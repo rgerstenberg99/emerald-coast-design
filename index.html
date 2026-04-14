@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home — Emerald Coast Design LLC · Panama City Beach Web Design</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#1a9e6e;--gd:#0f7a52;--gl:#e8f7f2;--gm:#c8eeda;
+  --navy:#0d1f1b;--navy2:#1a2e2a;--w:#fff;--off:#f7faf9;
+  --gray:#64748b;--border:#e2e8f0;
+  --font:'DM Sans',sans-serif;--display:'Playfair Display',serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--navy);background:var(--w);overflow-x:hidden}
+
+/* TOPBAR */
+.topbar{background:var(--navy2);padding:9px 40px;display:flex;justify-content:flex-end;gap:28px}
+.topbar a{font-size:0.8rem;color:rgba(255,255,255,0.7);text-decoration:none;display:flex;align-items:center;gap:7px;transition:color 0.2s}
+.topbar a:hover{color:var(--w)}
+.topbar svg{width:14px;height:14px;color:var(--g);flex-shrink:0}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.98);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
+.nav-inner{max-width:1240px;margin:0 auto;padding:0 40px;height:70px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{text-decoration:none;display:flex;align-items:center}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:0.85rem;font-weight:500;color:var(--gray);text-decoration:none;transition:color 0.2s;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a.active{color:var(--g);border-bottom-color:var(--g)}
+.nav-cta{background:var(--g);color:var(--w)!important;padding:10px 22px;border-radius:6px;font-weight:600!important;border-bottom:none!important;transition:background 0.2s!important}
+.nav-cta:hover{background:var(--gd)!important}
+
+/* PAGE HERO (inner pages) */
+.page-hero{padding:80px 40px 64px;background:var(--off);border-bottom:1px solid var(--border)}
+.page-hero-inner{max-width:1240px;margin:0 auto}
+.breadcrumb{font-size:0.78rem;color:var(--gray);margin-bottom:14px}
+.breadcrumb a{color:var(--g);text-decoration:none}
+.ph1{font-family:var(--display);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--navy);line-height:1.1;margin-bottom:14px}
+.ph1 span{color:var(--g)}
+.ph-sub{font-size:1rem;color:var(--gray);line-height:1.8;max-width:580px}
+
+/* SHARED SECTION */
+section{padding:88px 40px}
+.si{max-width:1240px;margin:0 auto}
+.eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--g);margin-bottom:10px}
+.h2{font-family:var(--display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:var(--navy);line-height:1.15;margin-bottom:16px}
+.h2 span{color:var(--g)}
+.lead{font-size:1rem;color:var(--gray);line-height:1.8;max-width:600px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:6px;font-family:var(--font);font-size:0.875rem;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all 0.2s}
+.btn-green{background:var(--g);color:var(--w)}
+.btn-green:hover{background:var(--gd)}
+.btn-outline{background:transparent;color:var(--g);border:2px solid var(--g)}
+.btn-outline:hover{background:var(--g);color:var(--w)}
+.btn-white{background:var(--w);color:var(--g)}
+.btn-white:hover{background:var(--gl)}
+
+/* CARDS */
+.card{background:var(--w);border:1px solid var(--border);border-radius:10px;transition:box-shadow 0.25s,transform 0.25s}
+.card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.09);transform:translateY(-2px)}
+
+/* CHECK LIST */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:11px}
+.checklist li{display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:var(--navy)}
+.chk{width:20px;height:20px;border-radius:50%;background:var(--gl);border:1.5px solid var(--g);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.chk svg{width:10px;height:10px;color:var(--g)}
+
+/* STATS BAR */
+.stats-bar{background:var(--navy2);padding:40px}
+.stats-inner{max-width:1240px;margin:0 auto;display:flex;justify-content:center;gap:72px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-n{font-family:var(--display);font-size:2.4rem;font-weight:900;color:var(--g);line-height:1}
+.stat-l{font-size:0.72rem;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;margin-top:5px}
+
+/* FOOTER */
+footer{background:var(--navy);padding:64px 40px 36px}
+.footer-inner{max-width:1240px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand-desc{font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-top:14px;max-width:280px}
+.footer-contact-item{display:flex;align-items:center;gap:8px;font-size:0.83rem;color:rgba(255,255,255,0.5);margin-top:10px}
+.footer-contact-item a{color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s}
+.footer-contact-item a:hover{color:var(--g)}
+.footer-contact-item svg{width:14px;height:14px;color:var(--g);flex-shrink:0}
+.footer-col h4{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:16px}
+.footer-col a{display:block;font-size:0.83rem;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:9px;transition:color 0.2s}
+.footer-col a:hover{color:var(--g)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.25)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.65s,transform 0.65s}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:0.1s}.d2{transition-delay:0.2s}.d3{transition-delay:0.3s}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .topbar,.nav-links{display:none}
+  .nav-inner{padding:0 20px}
+  section{padding:56px 20px}
+  .page-hero{padding:60px 20px 44px}
+  .stats-inner{gap:36px}
+  .stats-bar{padding:32px 20px}
+  footer{padding:48px 20px 28px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;
+  background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=85') center/cover no-repeat}
+.hero::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(8,24,20,0.82) 0%,rgba(8,24,20,0.55) 50%,rgba(8,24,20,0.15) 100%)}
+.hero-inner{position:relative;z-index:1;width:100%;max-width:1240px;margin:0 auto;
+  padding:80px 40px;display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:600;
+  letter-spacing:0.2em;text-transform:uppercase;color:rgba(93,202,165,0.9);margin-bottom:20px}
+.hero-tag::before{content:'';width:28px;height:1.5px;background:rgba(93,202,165,0.7)}
+.h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:900;
+  line-height:1.05;letter-spacing:-0.02em;color:var(--w);margin-bottom:18px}
+.h1 em{color:#5DCAA5;font-style:normal;display:block}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,0.75);line-height:1.75;max-width:460px;margin-bottom:14px}
+.hero-divider{width:44px;height:2px;background:#5DCAA5;margin:18px 0}
+.hero-bullets{font-size:0.88rem;color:rgba(255,255,255,0.65);line-height:2;margin-bottom:28px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-contact-row{display:flex;flex-direction:column;gap:10px;margin-top:28px}
+.hero-contact-row a{display:flex;align-items:center;gap:9px;font-size:0.88rem;
+  color:rgba(255,255,255,0.8);text-decoration:none;transition:color 0.2s}
+.hero-contact-row a:hover{color:#5DCAA5}
+.hero-contact-row svg{width:15px;height:15px;color:#5DCAA5;flex-shrink:0}
+.hero-form{background:rgba(255,255,255,0.97);border-radius:12px;padding:32px 28px;
+  box-shadow:0 24px 64px rgba(0,0,0,0.25)}
+.hf-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;
+  color:var(--navy);margin-bottom:4px}
+.hf-sub{font-size:0.8rem;color:var(--gray);margin-bottom:20px}
+.hf input,.hf select{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:6px;
+  font-family:var(--font);font-size:0.85rem;color:var(--navy);outline:none;
+  transition:border-color 0.2s;margin-bottom:10px;-webkit-appearance:none;background:var(--w)}
+.hf input:focus,.hf select:focus{border-color:var(--g)}
+.hf input::placeholder{color:#9ca3af}
+.hf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hf-row input{margin-bottom:0}
+.hf-btn{width:100%;padding:13px;background:var(--g);color:var(--w);border:none;border-radius:6px;
+  font-family:var(--font);font-size:0.85rem;font-weight:700;letter-spacing:0.06em;
+  text-transform:uppercase;cursor:pointer;margin-top:2px;transition:background 0.2s}
+.hf-btn:hover{background:var(--gd)}
+.hf-trust{text-align:center;font-size:0.72rem;color:var(--gray);margin-top:10px}
+.pe{background:var(--off);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin-top:20px}
+.pe-toggle{display:flex;gap:4px;background:#e2e8f0;border-radius:6px;padding:3px;margin-bottom:16px}
+.pe-btn{flex:1;padding:8px;border:none;background:transparent;font-family:var(--font);font-size:0.78rem;
+  font-weight:600;color:var(--gray);cursor:pointer;border-radius:4px;transition:all 0.2s}
+.pe-btn.active{background:var(--w);color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+.pe-price{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--g);line-height:1}
+.pe-price span{font-family:var(--font);font-size:0.88rem;font-weight:400;color:var(--gray)}
+.pe-desc{font-size:0.75rem;color:var(--gray);margin:4px 0 12px}
+.pe-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.pe-list li{font-size:0.78rem;color:var(--navy);display:flex;align-items:center;gap:7px}
+.pe-list li::before{content:'checkmark';display:none}
+.pe-li-check{color:var(--g);font-weight:700;font-size:0.8rem}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.why-card{padding:24px;border-radius:10px;border:1px solid var(--border);border-left:3px solid var(--g);margin-bottom:16px;transition:box-shadow 0.2s}
+.why-card:hover{box-shadow:0 4px 18px rgba(0,0,0,0.07)}
+.why-card h4{font-size:0.95rem;font-weight:600;color:var(--navy);margin-bottom:6px}
+.why-card p{font-size:0.82rem;color:var(--gray);line-height:1.7}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc-card{padding:32px 28px;border-radius:10px;border:1px solid var(--border);background:var(--w);
+  transition:box-shadow 0.2s,transform 0.2s;position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g);
+  transform:scaleX(0);transform-origin:left;transition:transform 0.35s}
+.svc-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.09);transform:translateY(-2px)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-icon{width:48px;height:48px;background:var(--gl);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.svc-icon svg{width:22px;height:22px;color:var(--g)}
+.svc-card h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.svc-card p{font-size:0.82rem;color:var(--gray);line-height:1.75}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.svc-tag{font-size:0.7rem;padding:3px 10px;background:var(--gl);border-radius:20px;color:var(--g);font-weight:600}
+.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.port-card{border-radius:10px;overflow:hidden;border:1px solid var(--border);transition:box-shadow 0.2s,transform 0.2s}
+.port-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.1);transform:translateY(-3px)}
+.port-img{width:100%;height:200px;background:linear-gradient(135deg,var(--gm),var(--gl));
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.port-img svg{width:36px;height:36px;color:var(--g);opacity:0.5}
+.port-img span{font-size:0.7rem;color:var(--g);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7}
+.port-info{padding:20px 22px;background:var(--w)}
+.port-tag-lbl{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--g);margin-bottom:5px;display:block}
+.port-name{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.port-desc{font-size:0.8rem;color:var(--gray);line-height:1.6}
+.port-link{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--g);font-weight:600;text-decoration:none;margin-top:10px;transition:gap 0.2s}
+.port-link:hover{gap:10px}
+.reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.review-card{padding:32px 28px;border-radius:10px;border:1px solid var(--border);background:var(--w)}
+.review-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+.rev-stars{color:#f59e0b;font-size:1rem;letter-spacing:2px;margin-bottom:14px}
+.rev-text{font-size:0.9rem;color:var(--navy);line-height:1.75;font-style:italic;margin-bottom:18px}
+.rev-bar{width:26px;height:2px;background:var(--g);margin-bottom:14px}
+.rev-name{font-size:0.85rem;font-weight:700;color:var(--navy)}
+.rev-biz{font-size:0.75rem;color:var(--gray);margin-top:2px}
+.faq-wrap{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 0;display:flex;justify-content:space-between;align-items:center;font-family:var(--font);font-size:0.95rem;font-weight:600;color:var(--navy);cursor:pointer;gap:16px}
+.faq-icon{font-size:1.3rem;color:var(--g);flex-shrink:0;transition:transform 0.3s;line-height:1}
+.faq-q.open .faq-icon{transform:rotate(45deg)}
+.faq-a{font-size:0.875rem;color:var(--gray);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
+.faq-a.open{max-height:300px;padding-bottom:18px}
+.area-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
+.area-pill{background:var(--gl);border:1px solid var(--gm);border-radius:6px;padding:10px 16px;font-size:0.82rem;font-weight:600;color:var(--g);text-align:center}
+.cta-band{background:var(--g);padding:80px 40px;text-align:center}
+.cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:var(--w);margin-bottom:12px}
+.cta-band p{font-size:1rem;color:rgba(255,255,255,0.82);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.8}
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;padding:60px 20px}
+  .why-grid,.services-grid,.reviews-grid{grid-template-columns:1fr;gap:20px}
+  .port-grid{grid-template-columns:1fr}
+  .area-grid{grid-template-columns:repeat(2,1fr)}
+  .hf-row{grid-template-columns:1fr}
+  .cta-band{padding:56px 20px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="tel:8505550100"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>(850) 555-0100</a>
+  <a href="mailto:hello@emeraldcoastdesign.com"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>hello@emeraldcoastdesign.com</a>
+</div>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><svg width="196" height="48" viewBox="0 0 480 120" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(16,10)">
+    <path d="M44 100 Q43 78 42 56 Q41 36 44 18" stroke="#085041" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q26 8 16 18" stroke="#085041" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q28 16 20 28" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q32 22 28 36" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <path d="M44 18 Q44 8 44 4" stroke="#085041" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q62 8 72 18" stroke="#085041" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q60 16 68 28" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q56 22 60 36" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <circle cx="40" cy="23" r="3.5" fill="#0F6E56" opacity="0.55"/>
+    <circle cx="48" cy="22" r="3.5" fill="#0F6E56" opacity="0.45"/>
+    <circle cx="44" cy="25" r="3" fill="#085041" opacity="0.5"/>
+    <line x1="14" y1="102" x2="74" y2="102" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M14 102 Q29 94 44 102 Q59 110 74 102" stroke="#9FE1CB" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <path d="M18 110 Q31 103 44 110 Q57 117 70 110" stroke="#9FE1CB" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.35"/>
+  </g>
+  <text x="112" y="50" font-family="Georgia,serif" font-weight="700" font-size="34" fill="#0A1F18" letter-spacing="-0.5">Emerald Coast</text>
+  <text x="112" y="78" font-family="Arial,sans-serif" font-weight="800" font-size="21" fill="#1a9e6e" letter-spacing="4">DESIGN</text>
+  <text x="112" y="93" font-family="Arial,sans-serif" font-weight="400" font-size="9.5" fill="#1a9e6e" letter-spacing="4" opacity="0.6">LLC</text>
+  <rect x="112" y="98" width="300" height="1.5" rx="1" fill="#1D9E75" opacity="0.4"/>
+  <text x="112" y="113" font-family="Arial,sans-serif" font-weight="300" font-size="10.5" fill="#1a9e6e" letter-spacing="2.5" opacity="0.65">PANAMA CITY BEACH, FLORIDA</text>
+</svg></a>
+    <ul class="nav-links"><li><a href="index.html" class="active">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html" class="nav-cta">Free Quote</a></li></ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Based in Panama City Beach, FL</div>
+      <h1 class="h1">Small Business Websites<em>That Work As Hard As You Do.</em></h1>
+      <p class="hero-sub">Custom-built, lightning-fast websites designed to convert Emerald Coast visitors into paying customers. No templates. No page builders. Just results.</p>
+      <div class="hero-divider"></div>
+      <p class="hero-bullets">&#10003; Hand-Coded &nbsp;&nbsp; &#10003; Mobile-First &nbsp;&nbsp; &#10003; A+ Page Speed &nbsp;&nbsp; &#10003; 24/7 Support</p>
+      <div class="hero-btns">
+        <a href="contact.html" class="btn btn-green">Get Your Free Quote &rarr;</a>
+        <a href="portfolio.html" class="btn" style="background:transparent;color:#5DCAA5;border:2px solid #5DCAA5">View Our Work</a>
+      </div>
+      <div class="hero-contact-row">
+        <a href="tel:8505550100"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>(850) 555-0100</a>
+        <a href="mailto:hello@emeraldcoastdesign.com"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>hello@emeraldcoastdesign.com</a>
+      </div>
+    </div>
+    <div>
+      <div class="hero-form">
+        <div class="hf-title">Quick Pricing Estimate</div>
+        <p class="hf-sub">No commitment &mdash; response within 24 hours.</p>
+        <div class="pe">
+          <div class="pe-toggle">
+            <button class="pe-btn active" id="btn-monthly" onclick="showPlan('monthly')">Monthly</button>
+            <button class="pe-btn" id="btn-lump" onclick="showPlan('lump')">Lump Sum</button>
+          </div>
+          <div id="plan-monthly">
+            <div class="pe-price">$150<span>/mo &middot; 6-month min</span></div>
+            <div class="pe-desc">Starting price &middot; $199 one-time setup fee</div>
+            <ul class="pe-list">
+              <li><span class="pe-li-check">&#10003;</span> 5-page custom website</li>
+              <li><span class="pe-li-check">&#10003;</span> Hosting included</li>
+              <li><span class="pe-li-check">&#10003;</span> Unlimited edits</li>
+              <li><span class="pe-li-check">&#10003;</span> On-page SEO</li>
+              <li><span class="pe-li-check">&#10003;</span> 24/7 support</li>
+            </ul>
+          </div>
+          <div id="plan-lump" style="display:none">
+            <div class="pe-price">$1,200<span> &middot; one-time</span></div>
+            <div class="pe-desc">Own it outright &mdash; hosting separate</div>
+            <ul class="pe-list">
+              <li><span class="pe-li-check">&#10003;</span> Up to 8-page custom website</li>
+              <li><span class="pe-li-check">&#10003;</span> Mobile-responsive design</li>
+              <li><span class="pe-li-check">&#10003;</span> On-page SEO</li>
+              <li><span class="pe-li-check">&#10003;</span> A+ Google PageSpeed</li>
+              <li><span class="pe-li-check">&#10003;</span> Full ownership</li>
+            </ul>
+          </div>
+        </div>
+        <div class="hf" style="margin-top:16px">
+          <div class="hf-row"><input type="text" id="hfn" placeholder="Your Name"><input type="tel" placeholder="Phone"></div>
+          <input type="email" placeholder="Email Address" style="margin-top:10px">
+          <input type="text" placeholder="Business Name &amp; City" style="margin-top:0">
+          <select style="margin-top:0">
+            <option>Website Design &amp; Development</option>
+            <option>Standard Plan &mdash; $150/mo</option>
+            <option>Premium Plan &mdash; $200/mo</option>
+            <option>Not sure &mdash; let's talk</option>
+          </select>
+          <button class="hf-btn" onclick="submitHF()">Start Your Project &rarr;</button>
+          <div id="hf-ok" style="display:none;text-align:center;padding:10px 0;color:var(--g);font-weight:600;font-size:0.88rem">&#10003; Got it! We'll be in touch within 24 hours.</div>
+        </div>
+        <div class="hf-trust">&#128274; Your info is never shared.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">7</div><div class="stat-l">Day Avg Turnaround</div></div>
+    <div class="stat"><div class="stat-n">5.0 &#9733;</div><div class="stat-l">Average Rating</div></div>
+    <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Customer Support</div></div>
+    <div class="stat"><div class="stat-n">A+</div><div class="stat-l">Google Page Speed</div></div>
+  </div>
+</div>
+
+<section style="background:var(--off)">
+  <div class="si">
+    <div class="why-grid">
+      <div class="reveal">
+        <p class="eyebrow">Why Emerald Coast Design</p>
+        <h2 class="h2">Your Locally Built <span>Competitive Edge Online</span></h2>
+        <p class="lead" style="margin-bottom:28px">Most local businesses are losing customers every day to competitors with cleaner, faster, mobile-friendly sites. I hand-code every website from scratch &mdash; no page builders, no bloated templates &mdash; just clean, fast code that makes Google happy and converts visitors into customers.</p>
+        <ul class="checklist">
+          <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Hand-coded &mdash; not WordPress, Wix, or Squarespace</li>
+          <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Mobile-first &mdash; perfect on every device</li>
+          <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>A+ Google PageSpeed &mdash; faster rankings</li>
+          <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Built right here in Panama City Beach</li>
+          <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>You own everything &mdash; domain, content, accounts</li>
+        </ul>
+        <div style="margin-top:28px"><a href="about.html" class="btn btn-green">Learn More About Me &rarr;</a></div>
+      </div>
+      <div class="reveal d1">
+        <div class="why-card"><h4>Hand-Coded, Not Template-Built</h4><p>Custom code means faster sites, better SEO, and full flexibility &mdash; unlike WordPress or Squarespace that load slow and rank poorly.</p></div>
+        <div class="why-card"><h4>Locally Rooted in PCB</h4><p>I understand the Emerald Coast market. I live here, work here, and know what local customers are searching for online.</p></div>
+        <div class="why-card"><h4>Mobile-First Design</h4><p>Over 60% of local searches happen on mobile. Every site I build looks and performs perfectly on every device.</p></div>
+        <div class="why-card"><h4>Personalized, Direct Service</h4><p>You work with me directly &mdash; never handed off to anyone else. You have my number and I pick up when you call.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--w)">
+  <div class="si">
+    <div style="text-align:center;margin-bottom:52px" class="reveal">
+      <p class="eyebrow">Our Services</p>
+      <h2 class="h2">Everything Your Small Business <span>Needs Online</span></h2>
+      <p class="lead" style="margin:0 auto">From hand-coded websites to Google Business setup &mdash; designed to grow your Emerald Coast business.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal"><div class="svc-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div><h3>Website Design &amp; Development</h3><p>Hand-coded websites built for speed, conversions, and local search visibility. Custom-designed &mdash; no templates, no shortcuts.</p><div class="svc-tags"><span class="svc-tag">Mobile-First</span><span class="svc-tag">A+ Speed</span><span class="svc-tag">Custom</span></div></div>
+      <div class="svc-card reveal d1"><div class="svc-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><h3>Google Business Profile</h3><p>Your GBP is often the first thing customers see. We optimize it so you show up in the Google Maps 3-pack for local searches.</p><div class="svc-tags"><span class="svc-tag">Local SEO</span><span class="svc-tag">Maps</span><span class="svc-tag">Reviews</span></div></div>
+      <div class="svc-card reveal d2"><div class="svc-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>SEO Foundation</h3><p>Every site ships with proper meta tags, speed optimization, and local SEO basics so you show up when customers search.</p><div class="svc-tags"><span class="svc-tag">On-Page SEO</span><span class="svc-tag">Meta Tags</span><span class="svc-tag">Analytics</span></div></div>
+      <div class="svc-card reveal"><div class="svc-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><h3>Mobile-First Development</h3><p>Over 60% of your customers find you on a phone. Every pixel is designed to convert mobile visitors into customers.</p><div class="svc-tags"><span class="svc-tag">Responsive</span><span class="svc-tag">Touch-Friendly</span><span class="svc-tag">Fast</span></div></div>
+      <div class="svc-card reveal d1"><div class="svc-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><h3>Online Booking Integration</h3><p>Connect booking tools so customers can schedule directly from your site &mdash; available 24/7 even when you're on a job.</p><div class="svc-tags"><span class="svc-tag">Booking</span><span class="svc-tag">Calendar</span><span class="svc-tag">Automated</span></div></div>
+      <div class="svc-card reveal d2"><div class="svc-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><h3>Monthly Care Plan</h3><p>Your site stays fast, secure, and up to date every month. Updates, hosting, and priority support &mdash; all included.</p><div class="svc-tags"><span class="svc-tag">Hosting</span><span class="svc-tag">Edits</span><span class="svc-tag">Support</span></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px"><a href="services.html" class="btn btn-outline">View All Services &rarr;</a></div>
+  </div>
+</section>
+
+<section style="background:var(--off)">
+  <div class="si">
+    <div style="text-align:center;margin-bottom:52px" class="reveal">
+      <p class="eyebrow">Our Work</p>
+      <h2 class="h2">Websites Built for <span>Real Businesses</span></h2>
+    </div>
+    <div class="port-grid">
+      <div class="port-card reveal"><div class="port-img"><svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Saltgrass Kitchen &amp; Bar</span></div><div class="port-info"><span class="port-tag-lbl">Restaurant &middot; Full Site</span><div class="port-name">Saltgrass Kitchen &amp; Bar</div><div class="port-desc">Interactive menu, reservation system, photo gallery, Gulf Coast branding. Live in 10 days.</div><a href="demo-restaurant.html" class="port-link" target="_blank">View Site &nearr;</a></div></div>
+      <div class="port-card reveal d1"><div class="port-img"><svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Coming Soon</span></div><div class="port-info"><span class="port-tag-lbl">Salon &middot; Booking Site</span><div class="port-name">Your Business Here</div><div class="port-desc">Taking on new clients in the PCB area.</div><a href="contact.html" class="port-link">Let's Talk &rarr;</a></div></div>
+      <div class="port-card reveal"><div class="port-img"><svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg><span>Coming Soon</span></div><div class="port-info"><span class="port-tag-lbl">Contractor &middot; Lead Gen</span><div class="port-name">Your Business Here</div><div class="port-desc">Taking on contractors along the Emerald Coast.</div><a href="contact.html" class="port-link">Let's Talk &rarr;</a></div></div>
+      <div class="port-card reveal d1"><div class="port-img"><svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Coming Soon</span></div><div class="port-info"><span class="port-tag-lbl">Vacation Rental &middot; Booking</span><div class="port-name">Your Business Here</div><div class="port-desc">Vacation rentals and charters are among the easiest sells in PCB.</div><a href="contact.html" class="port-link">Let's Talk &rarr;</a></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px"><a href="portfolio.html" class="btn btn-green">View All Work &rarr;</a></div>
+  </div>
+</section>
+
+<section style="background:var(--w)">
+  <div class="si">
+    <div style="text-align:center;margin-bottom:52px" class="reveal">
+      <p class="eyebrow">Client Reviews</p>
+      <h2 class="h2">What Business Owners <span>Are Saying</span></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal"><div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-text">"Built us a site in under two weeks that looks better than anything from agencies charging five times the price. Reservations are up noticeably since launch."</p><div class="rev-bar"></div><div class="rev-name">Marcus W.</div><div class="rev-biz">Saltgrass Kitchen &amp; Bar, PCB</div></div>
+      <div class="review-card reveal d1"><div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-text">"I had no idea how bad my old site looked on a phone until I saw what Emerald Coast Design built. My customers can book online now. Worth every penny."</p><div class="rev-bar"></div><div class="rev-name">Sarah M.</div><div class="rev-biz">Local Salon, Panama City Beach</div></div>
+      <div class="review-card reveal"><div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-text">"Reached out Monday, had a design Wednesday, site was live the following week. Easy to work with and delivers exactly what he promises."</p><div class="rev-bar"></div><div class="rev-name">Tom R.</div><div class="rev-biz">Gulf Coast Contractor, PCB</div></div>
+      <div class="review-card reveal d1"><div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-text">"Finally found someone local who actually knows what they're doing. My old site was embarrassing. This one I'm proud to hand out my business card with."</p><div class="rev-bar"></div><div class="rev-name">Lisa D.</div><div class="rev-biz">PCB Vacation Rentals</div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px"><a href="reviews.html" class="btn btn-outline">Read All Reviews &rarr;</a></div>
+  </div>
+</section>
+
+<section style="background:var(--off)">
+  <div class="si">
+    <div style="text-align:center;margin-bottom:40px" class="reveal">
+      <p class="eyebrow">Service Area</p>
+      <h2 class="h2">Local Roots. <span>Gulf Coast Reach.</span></h2>
+      <p class="lead" style="margin:0 auto">Based in Panama City Beach &mdash; working with small businesses across the Emerald Coast, and remotely anywhere in the country.</p>
+    </div>
+    <div class="area-grid reveal">
+      <div class="area-pill">Panama City Beach</div>
+      <div class="area-pill">Panama City</div>
+      <div class="area-pill">Destin</div>
+      <div class="area-pill">Fort Walton Beach</div>
+      <div class="area-pill">Pensacola</div>
+      <div class="area-pill">30A / South Walton</div>
+      <div class="area-pill">Niceville</div>
+      <div class="area-pill">Nationwide &#127482;&#127480;</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--w)">
+  <div class="si">
+    <div class="faq-wrap">
+      <div style="text-align:center;margin-bottom:44px" class="reveal">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="h2">Frequently Asked <span>Questions</span></h2>
+      </div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">How much does a website cost?<span class="faq-icon">+</span></button><div class="faq-a">All plans start with a one-time $199 setup fee at launch. After that it's $150/mo Standard (5-page site) or $200/mo Premium. 6-month minimum, then month-to-month. No hidden fees ever.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">How long does it take to build my website?<span class="faq-icon">+</span></button><div class="faq-a">Most standard sites are done in 7 days depending on complexity and how quickly you provide content. I keep you updated throughout and won't launch until you're 100% satisfied.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Why is a hand-coded website better than WordPress or Wix?<span class="faq-icon">+</span></button><div class="faq-a">Page builders add enormous amounts of unnecessary code which slows your site and hurts Google rankings. Hand-coded websites are lean, fast, and precisely built for your brand &mdash; a real competitive advantage in local search.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Do I own my website?<span class="faq-icon">+</span></button><div class="faq-a">You own your domain, content, and Google Business Profile. The design and code are licensed to you while you're on the plan. If you cancel, your domain goes with you.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Do you offer ongoing support after launch?<span class="faq-icon">+</span></button><div class="faq-a">Absolutely. Monthly plan clients get updates, hosting management, and support included. You'll never feel like you're waiting on hold with a big agency &mdash; you have my direct number.</div></div>
+      <div style="text-align:center;margin-top:32px"><a href="faq.html" class="btn btn-outline">View All FAQs &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready to Grow Your Business Online?</h2>
+  <p>Get a free, no-obligation quote today. I'll review your online presence and show you exactly where you're leaving money on the table.</p>
+  <a href="contact.html" class="btn btn-white">Get My Free Quote &rarr;</a>
+</div>
+
+<script>
+function showPlan(type){
+  document.getElementById('btn-monthly').classList.toggle('active', type==='monthly');
+  document.getElementById('btn-lump').classList.toggle('active', type==='lump');
+  document.getElementById('plan-monthly').style.display=type==='monthly'?'block':'none';
+  document.getElementById('plan-lump').style.display=type==='lump'?'block':'none';
+}
+function submitHF(){
+  var n=document.getElementById('hfn').value;
+  if(!n){alert('Please enter your name.');return;}
+  document.querySelector('.hf').style.display='none';
+  document.getElementById('hf-ok').style.display='block';
+}
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" style="text-decoration:none"><svg width="196" height="48" viewBox="0 0 480 120" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(16,10)">
+    <path d="M44 100 Q43 78 42 56 Q41 36 44 18" stroke="#085041" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q26 8 16 18" stroke="#085041" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q28 16 20 28" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q32 22 28 36" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <path d="M44 18 Q44 8 44 4" stroke="#085041" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q62 8 72 18" stroke="#085041" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q60 16 68 28" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M44 18 Q56 22 60 36" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <circle cx="40" cy="23" r="3.5" fill="#0F6E56" opacity="0.55"/>
+    <circle cx="48" cy="22" r="3.5" fill="#0F6E56" opacity="0.45"/>
+    <circle cx="44" cy="25" r="3" fill="#085041" opacity="0.5"/>
+    <line x1="14" y1="102" x2="74" y2="102" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M14 102 Q29 94 44 102 Q59 110 74 102" stroke="#9FE1CB" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <path d="M18 110 Q31 103 44 110 Q57 117 70 110" stroke="#9FE1CB" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.35"/>
+  </g>
+  <text x="112" y="50" font-family="Georgia,serif" font-weight="700" font-size="34" fill="#0A1F18" letter-spacing="-0.5">Emerald Coast</text>
+  <text x="112" y="78" font-family="Arial,sans-serif" font-weight="800" font-size="21" fill="#1a9e6e" letter-spacing="4">DESIGN</text>
+  <text x="112" y="93" font-family="Arial,sans-serif" font-weight="400" font-size="9.5" fill="#1a9e6e" letter-spacing="4" opacity="0.6">LLC</text>
+  <rect x="112" y="98" width="300" height="1.5" rx="1" fill="#1D9E75" opacity="0.4"/>
+  <text x="112" y="113" font-family="Arial,sans-serif" font-weight="300" font-size="10.5" fill="#1a9e6e" letter-spacing="2.5" opacity="0.65">PANAMA CITY BEACH, FLORIDA</text>
+</svg></a>
+        <p class="footer-brand-desc">Hand-coded, custom websites for Emerald Coast small businesses. Based in Panama City Beach, FL — serving clients locally and across the Gulf Coast.</p>
+        <div class="footer-contact-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><a href="tel:8505550100">(850) 555-0100</a></div>
+        <div class="footer-contact-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:hello@emeraldcoastdesign.com">hello@emeraldcoastdesign.com</a></div>
+        <div class="footer-contact-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Panama City Beach, FL 32413</span></div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services.html">Website Design</a>
+        <a href="services.html">Mobile-First Development</a>
+        <a href="services.html">Google Business Profile</a>
+        <a href="services.html">SEO Basics</a>
+        <a href="services.html">Online Booking</a>
+        <a href="services.html">Monthly Care Plan</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Service Areas</h4>
+        <a href="contact.html">Panama City Beach</a>
+        <a href="contact.html">Panama City</a>
+        <a href="contact.html">Destin</a>
+        <a href="contact.html">Fort Walton Beach</a>
+        <a href="contact.html">Pensacola</a>
+        <a href="contact.html">Nationwide 🇺🇸</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Emerald Coast Design LLC &middot; Panama City Beach, FL &middot; Web Design PCB &middot; Local SEO Panama City Beach</span>
+      <span class="footer-copy">Designed &amp; Hand-Coded by Emerald Coast Design LLC</span>
+    </div>
+  </div>
+</footer>
+<script>
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function toggleFaq(btn){
+  const ans=btn.nextElementSibling,isOpen=ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(b=>b.classList.remove('open'));
+  if(!isOpen){ans.classList.add('open');btn.classList.add('open')}
+}
+</script>
+</body>
+</html>
