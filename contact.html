@@ -227,25 +227,15 @@ footer{background:var(--navy);padding:64px 40px 36px}
       <div class="cf-card reveal d1">
         <div id="cf-form">
           <h3>Request Your Free Quote</h3>
-          <p>Tell me about your project and I'll get back to you within 24 hours.</p>
+          <p>Fill out the form below and I'll get back to you within 24 hours — usually same day.</p>
           <div class="cf-row">
-            <div class="cf-group"><label>Your Name</label><input type="text" placeholder="Jane Smith" id="cfn"></div>
-            <div class="cf-group"><label>Phone</label><input type="tel" placeholder="(850) 555-0000"></div>
+            <div class="cf-group"><label>Your Name *</label><input type="text" placeholder="Jane Smith" id="cfn" required></div>
+            <div class="cf-group"><label>Phone *</label><input type="tel" placeholder="(850) 555-0000" id="cfp" required></div>
           </div>
-          <div class="cf-group"><label>Email</label><input type="email" placeholder="jane@yourbusiness.com" id="cfe"></div>
-          <div class="cf-group"><label>Business Name &amp; City</label><input type="text" placeholder="Jane's Salon, PCB" id="cfb"></div>
-          <div class="cf-group"><label>Service You're Interested In</label>
-            <select>
-              <option>Select a service...</option>
-              <option>Website Design &amp; Development</option>
-              <option>Standard Plan &mdash; $175/mo</option>
-              <option>Premium Plan &mdash; $200/mo</option>
-              <option>Google Business Profile</option>
-              <option>Not sure &mdash; let's talk</option>
-            </select>
-          </div>
-          <div class="cf-group"><label>Tell Me About Your Project</label><textarea placeholder="What does your business do? Do you have an existing website? What do you need most?"></textarea></div>
-          <button class="cf-submit" onclick="submitCF()">Send My Free Quote Request &rarr;</button>
+          <div class="cf-group"><label>Email Address *</label><input type="email" placeholder="jane@yourbusiness.com" id="cfe" required></div>
+          <div class="cf-group"><label>Business Name &amp; City</label><input type="text" placeholder="Jane's Salon &mdash; Panama City Beach" id="cfb"></div>
+          <div class="cf-group"><label>Tell Me About Your Project</label><textarea id="cfm" placeholder="What kind of business do you run? Do you have an existing website? What are you looking to accomplish? The more you share, the better I can help." style="min-height:140px"></textarea></div>
+          <button class="cf-submit" onclick="submitCF()">Send It &rarr;</button>
           <p style="text-align:center;font-size:0.72rem;color:var(--gray);margin-top:10px">&#128274; Your info is never shared. I'll respond within 24 hours.</p>
         </div>
         <div class="cf-ok" id="cf-ok">
@@ -259,22 +249,24 @@ footer{background:var(--navy);padding:64px 40px 36px}
 </section>
 <script>
 async function submitCF(){
-  var n=document.getElementById('cfn').value,e=document.getElementById('cfe').value,b=document.getElementById('cfb').value;
-  if(!n||!e||!b){alert('Please fill in your name, email, and business name.');return;}
+  var n=document.getElementById('cfn').value.trim();
+  var e=document.getElementById('cfe').value.trim();
+  var p=document.getElementById('cfp').value.trim();
+  var b=document.getElementById('cfb').value.trim();
+  var m=document.getElementById('cfm').value.trim();
+  if(!n){alert('Please enter your name.');return;}
+  if(!p){alert('Please enter your phone number.');return;}
+  if(!e){alert('Please enter your email address.');return;}
   var btn=document.querySelector('.cf-submit');
   btn.textContent='Sending...';btn.disabled=true;
-  var msg=document.querySelector('.cf-group textarea').value||'No message provided';
-  var svc=document.querySelector('.cf-group select').value||'Not specified';
-  var phone=document.querySelector('.cf-row input[type=tel]').value||'Not provided';
   var data={
     access_key:'5004be67-54bb-4705-b513-bfe107bfc0e2',
-    subject:'New Contact Form - Emerald Coast Design',
+    subject:'New Quote Request - Emerald Coast Design',
     name:n,
     email:e,
-    phone:phone,
-    business:b,
-    service:svc,
-    message:msg
+    phone:p,
+    business:b||'Not provided',
+    message:m||'No message provided'
   };
   try{
     var res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
@@ -283,11 +275,11 @@ async function submitCF(){
       document.getElementById('cf-form').style.display='none';
       document.getElementById('cf-ok').style.display='flex';
     } else {
-      btn.textContent='Send My Free Quote Request →';btn.disabled=false;
+      btn.textContent='Send It \u2192';btn.disabled=false;
       alert('Something went wrong. Please try again or call us directly.');
     }
   } catch(e2){
-    btn.textContent='Send My Free Quote Request →';btn.disabled=false;
+    btn.textContent='Send It \u2192';btn.disabled=false;
     alert('Something went wrong. Please try again or call us directly.');
   }
 }
