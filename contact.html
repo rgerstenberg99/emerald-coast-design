@@ -25,7 +25,8 @@ body{font-family:var(--font);color:var(--navy);background:var(--w);overflow-x:hi
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.98);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
 .nav-inner{max-width:1240px;margin:0 auto;padding:0 40px;height:70px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{text-decoration:none;display:flex;align-items:center}
+.nav-logo{text-decoration:none;display:flex;align-items:center;font-family:var(--display);font-size:1.15rem;font-weight:700;color:var(--navy);letter-spacing:-0.02em}
+.nav-logo span{color:var(--g)}
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{font-size:0.85rem;font-weight:500;color:var(--gray);text-decoration:none;transition:color 0.2s;padding:4px 0;border-bottom:2px solid transparent}
 .nav-links a:hover{color:var(--navy)}
@@ -199,29 +200,7 @@ footer{background:var(--navy);padding:64px 40px 36px}
 </div>
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><svg width="196" height="48" viewBox="0 0 480 120" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(16,10)">
-    <path d="M44 100 Q43 78 42 56 Q41 36 44 18" stroke="#085041" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-    <path d="M44 18 Q26 8 16 18" stroke="#085041" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-    <path d="M44 18 Q28 16 20 28" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" fill="none"/>
-    <path d="M44 18 Q32 22 28 36" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
-    <path d="M44 18 Q44 8 44 4" stroke="#085041" stroke-width="3" stroke-linecap="round" fill="none"/>
-    <path d="M44 18 Q62 8 72 18" stroke="#085041" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-    <path d="M44 18 Q60 16 68 28" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" fill="none"/>
-    <path d="M44 18 Q56 22 60 36" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
-    <circle cx="40" cy="23" r="3.5" fill="#0F6E56" opacity="0.55"/>
-    <circle cx="48" cy="22" r="3.5" fill="#0F6E56" opacity="0.45"/>
-    <circle cx="44" cy="25" r="3" fill="#085041" opacity="0.5"/>
-    <line x1="14" y1="102" x2="74" y2="102" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M14 102 Q29 94 44 102 Q59 110 74 102" stroke="#9FE1CB" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
-    <path d="M18 110 Q31 103 44 110 Q57 117 70 110" stroke="#9FE1CB" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.35"/>
-  </g>
-  <text x="112" y="50" font-family="Georgia,serif" font-weight="700" font-size="34" fill="#0A1F18" letter-spacing="-0.5">Emerald Coast</text>
-  <text x="112" y="78" font-family="Arial,sans-serif" font-weight="800" font-size="21" fill="#1a9e6e" letter-spacing="4">DESIGN</text>
-  <text x="112" y="93" font-family="Arial,sans-serif" font-weight="400" font-size="9.5" fill="#1a9e6e" letter-spacing="4" opacity="0.6">LLC</text>
-  <rect x="112" y="98" width="300" height="1.5" rx="1" fill="#1D9E75" opacity="0.4"/>
-  <text x="112" y="113" font-family="Arial,sans-serif" font-weight="300" font-size="10.5" fill="#1a9e6e" letter-spacing="2.5" opacity="0.65">PANAMA CITY BEACH, FLORIDA</text>
-</svg></a>
+    <a href="index.html" class="nav-logo">Emerald Coast <span>Design LLC</span></a>
     <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html" class="nav-cta">Free Quote</a></li></ul>
   </div>
 </nav>
@@ -279,11 +258,38 @@ footer{background:var(--navy);padding:64px 40px 36px}
   </div>
 </section>
 <script>
-function submitCF(){
+async function submitCF(){
   var n=document.getElementById('cfn').value,e=document.getElementById('cfe').value,b=document.getElementById('cfb').value;
   if(!n||!e||!b){alert('Please fill in your name, email, and business name.');return;}
-  document.getElementById('cf-form').style.display='none';
-  document.getElementById('cf-ok').style.display='flex';
+  var btn=document.querySelector('.cf-submit');
+  btn.textContent='Sending...';btn.disabled=true;
+  var msg=document.querySelector('.cf-group textarea').value||'No message provided';
+  var svc=document.querySelector('.cf-group select').value||'Not specified';
+  var phone=document.querySelector('.cf-row input[type=tel]').value||'Not provided';
+  var data={
+    access_key:'5004be67-54bb-4705-b513-bfe107bfc0e2',
+    subject:'New Contact Form - Emerald Coast Design',
+    name:n,
+    email:e,
+    phone:phone,
+    business:b,
+    service:svc,
+    message:msg
+  };
+  try{
+    var res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    var json=await res.json();
+    if(json.success){
+      document.getElementById('cf-form').style.display='none';
+      document.getElementById('cf-ok').style.display='flex';
+    } else {
+      btn.textContent='Send My Free Quote Request →';btn.disabled=false;
+      alert('Something went wrong. Please try again or call us directly.');
+    }
+  } catch(e2){
+    btn.textContent='Send My Free Quote Request →';btn.disabled=false;
+    alert('Something went wrong. Please try again or call us directly.');
+  }
 }
 </script>
 
