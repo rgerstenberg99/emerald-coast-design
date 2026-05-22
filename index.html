@@ -289,16 +289,11 @@ footer{background:var(--navy);padding:64px 40px 36px}
           </div>
         </div>
         <div class="hf" style="margin-top:16px">
-          <div class="hf-row"><input type="text" id="hfn" placeholder="Your Name"><input type="tel" placeholder="Phone"></div>
-          <input type="email" placeholder="Email Address" style="margin-top:10px">
-          <input type="text" placeholder="Business Name &amp; City" style="margin-top:0">
-          <select style="margin-top:0">
-            <option>Website Design &amp; Development</option>
-            <option>Standard Plan &mdash; $175/mo</option>
-            <option>Premium Plan &mdash; $200/mo</option>
-            <option>Not sure &mdash; let's talk</option>
-          </select>
-          <button class="hf-btn" onclick="submitHF()">Start Your Project &rarr;</button>
+          <div class="hf-row"><input type="text" id="hfn" placeholder="Your Name *"><input type="tel" id="hfp" placeholder="Phone *"></div>
+          <input type="email" id="hfe" placeholder="Email Address *" style="margin-top:10px">
+          <input type="text" id="hfb" placeholder="Business Name &amp; City" style="margin-top:0">
+          <textarea id="hfm" placeholder="Tell me about your project — what kind of business do you run, do you have an existing website, and what are you looking to accomplish?" style="width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:6px;font-family:var(--font);font-size:0.85rem;color:var(--navy);outline:none;resize:vertical;min-height:90px;margin-bottom:10px;transition:border-color 0.2s;background:var(--w)"></textarea>
+          <button class="hf-btn" onclick="submitHF()">Send It &rarr;</button>
           <div id="hf-ok" style="display:none;text-align:center;padding:10px 0;color:var(--g);font-weight:600;font-size:0.88rem">&#10003; Got it! We'll be in touch within 24 hours.</div>
         </div>
         <div class="hf-trust">&#128274; Your info is never shared.</div>
@@ -437,17 +432,22 @@ function showPlan(type){
   document.getElementById('plan-lump').style.display=type==='lump'?'block':'none';
 }
 async function submitHF(){
-  var n=document.getElementById('hfn').value;
+  var n=document.getElementById('hfn').value.trim();
+  var p=document.getElementById('hfp').value.trim();
+  var e=document.getElementById('hfe').value.trim();
+  var b=document.getElementById('hfb').value.trim();
+  var m=document.getElementById('hfm').value.trim();
   if(!n){alert('Please enter your name.');return;}
+  if(!p){alert('Please enter your phone number.');return;}
+  if(!e){alert('Please enter your email address.');return;}
   var btn=document.querySelector('.hf-btn');
   btn.textContent='Sending...';btn.disabled=true;
   var data={
     access_key:'5004be67-54bb-4705-b513-bfe107bfc0e2',
     subject:'New Quote Request - Emerald Coast Design',
-    name:n,
-    email:document.querySelector('.hf input[type=email]').value||'not provided',
-    business:document.querySelector('.hf input[placeholder*="Business"]').value||'not provided',
-    service:document.querySelector('.hf select').value||'not provided'
+    name:n,email:e,phone:p,
+    business:b||'Not provided',
+    message:m||'No message provided'
   };
   try{
     var res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
@@ -456,11 +456,11 @@ async function submitHF(){
       document.querySelector('.hf').style.display='none';
       document.getElementById('hf-ok').style.display='block';
     } else {
-      btn.textContent='Start Your Project →';btn.disabled=false;
+      btn.textContent='Send It \u2192';btn.disabled=false;
       alert('Something went wrong. Please try again or call us directly.');
     }
-  } catch(e){
-    btn.textContent='Start Your Project →';btn.disabled=false;
+  } catch(err){
+    btn.textContent='Send It \u2192';btn.disabled=false;
     alert('Something went wrong. Please try again or call us directly.');
   }
 }
